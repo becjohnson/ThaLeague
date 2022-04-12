@@ -1,5 +1,0 @@
-Mbdv32gdvag*^#tfea5
-
-Your Order Number is: 9900504077
-
-Server=tcp:tha-league.database.windows.net,1433;Initial Catalog=tha-league;Persist Security Info=False;User ID=phil;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
