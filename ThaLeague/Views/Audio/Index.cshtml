@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ThaLeague.Models.Audio>
+@{
+    ViewData["Title"] = "Index";
+}
+<hr />
+<h1 class="text-center">Music</h1>
+<hr />
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 text-center">
+                <div class="d-inline p-2">
+                    <div class="card text-center" style="width: 21rem; background-color: black;">
+                        <div class="d-flex bd-highlight mb-3">
+                            <div class="dropdown ms-auto p-2 bd-highlight">
+                                <svg xmlns="http://www.w3.org/2000/svg" type="button" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" width="20px" viewBox="0 0 448 512"><path fill="#FCFCFC" d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z" /></svg>
+                                <ul class="dropdown-menu  dropdown-menu-dark text-center" aria-labelledby="dropdownMenuLink">
+                                    <li><a asp-action="Edit" asp-route-id="@item.AudioId">Edit</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a asp-controller="Audio" asp-action="Delete" data-bs-toggle="modal" data-bs-target="#deleteModal" asp-route-id="@item.AudioId">Delete</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <img src="~/images/@item.Image" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <audio class="align-content-around" controls>
+                                <source src="~/audios/@item.Path" type="audio/mp3">
+                                Your browser does not support the audio element.
+                            </audio>
+                            <h3 class="card-title" style="text-transform:uppercase; font: bold; color: white;">@Html.DisplayFor(modelItem => item.Title)</h3>
+                            <p class="card-text" style="text-transform:uppercase; color: grey;">@item.StageName</p>
+                        </div>
+                    </div>
+                </div>
+                <form enctype="multipart/form-data" asp-controller="Audio" asp-action="DeleteConfirmed">
+                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog text-light">
+                            <div class="modal-content bg-dark">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Delete Audio</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete this item?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button class="btn btn-danger" asp-controller="Audio" asp-action="DeleteConfirmed" asp-route-id="@item.AudioId">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        }
+    </div>
+</div>
+

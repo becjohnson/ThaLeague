@@ -1,0 +1,101 @@
+﻿@model ThaLeague.Models.Artist
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<hr />
+<div class="container curved text-center" style="max-width:800px; background-color:black;">
+    <h1>EDIT ARTIST</h1>
+    <hr />
+    <form enctype="multipart/form-data" asp-action="Edit">
+        <div class="row">
+            <div class="col-md-6">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <input asp-for="FirstName" placeholder="First Name" class="form-control bg-light bottom-space" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group bottom-space">
+                    <input asp-for="StageName" placeholder="Alias" class="form-control bg-light" />
+                    <span asp-validation-for="StageName" class="text-danger"></span>
+                </div>
+                <div class="input-group bottom-space">
+                    <span asp-validation-for="Soundcloud" class="input-group-text" id="basic-addon3">soundcloud.com/</span>
+                    <input asp-for="Soundcloud" type="text" placeholder="user_name" class="form-control bg-light" id="basic-url" aria-describedby="basic-addon3">
+                </div>
+                <div class="input-group bottom-space">
+                    <span asp-validation-for="Youtube" class="input-group-text" id="basic-addon3">youtube.com/</span>
+                    <input asp-for="Youtube" type="text" placeholder="user_name" class="form-control bg-light" id="basic-url" aria-describedby="basic-addon3">
+                </div>
+                <div class="input-group bottom-space">
+                    <span asp-validation-for="Spotify" class="input-group-text" id="basic-addon3">spotify.com/</span>
+                    <input asp-for="Spotify" type="text" placeholder="user_name" class="form-control bg-light" id="basic-url" aria-describedby="basic-addon3">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group bottom-space">
+                    <input asp-for="LastName" placeholder="Last Name" class="form-control bg-light" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group bottom-space">
+                    <input asp-for="Image" type="file" accept="image/*" placeholder="Select a Photo" class="form-control bg-light" />
+                </div>
+                <div class="input-group bottom-space">
+                    <span asp-validation-for="Instagram" class="input-group-text" id="basic-addon3">instagram.com/</span>
+                    <input asp-for="Instagram" type="text" placeholder="user_name" class="form-control bg-light" id="basic-url" aria-describedby="basic-addon3">
+                </div>
+                <div class="input-group bottom-space">
+                    <span asp-validation-for="Facebook" class="input-group-text" id="basic-addon3">facebook.com/</span>
+                    <input asp-for="Facebook" type="text" placeholder="user_name" class="form-control bg-light" id="basic-url" aria-describedby="basic-addon3">
+                </div>
+                <div class="input-group bottom-space">
+                    <span asp-for="Twitter" class="input-group-text" id="basic-addon3">twitter.com/</span>
+                    <input asp-for="Twitter" type="text" placeholder="user_name" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group bottom-space">
+                    <textarea asp-for="Bio" placeholder="Write a nice biography with keywords here..." class="form-control bg-light"></textarea>
+                    <span asp-validation-for="Bio" class="text-danger"></span>
+                </div>
+                <button class="w-100 btn btn-outline-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" viewBox="0 0 448 512"><path fill="#FCFCFC" d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z" /></svg>
+                </button>
+                <div class="collapse" id="collapseExample" style="background-color:black;">
+                    <div class="card card-body" style="background-color:black;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input asp-for="City" placeholder="City" type="text" accept="image/*" class="form-control bg-light" />
+                                    <span asp-validation-for="City" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input asp-for="State" placeholder="State" type="text" class="form-control bottom-space bg-light" />
+                                    <span asp-validation-for="State" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Edit" class="w-100 btn btn-outline-danger bottom-space" asp-route-id="@Model.ArtistId" />
+                <a class="text-light" asp-action="Index">Back to List</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div>
+</div>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

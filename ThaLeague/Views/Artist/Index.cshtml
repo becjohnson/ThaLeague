@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ThaLeague.Models.Artist>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<hr id="hr" />
+<h1 class="text-center">Artists</h1>
+<hr id="hr" />
+
+<div class="container-fluid">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <a asp-controller="Artist" asp-action="Create" class="btn btn-outline-success create-btn">Create New</a>
+    }
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-6 col-md-12 col-xl-6 col-sm-12 text-center">
+                <a asp-action="Details" asp-route-id="@item.ArtistId">
+                    <div class="d-inline p-2">
+                        <div class="container2 container text-center">
+                            <div class="tv">
+                                <div class="screen" style="object-fit: cover">
+                                    <img class="screen1" src="~/images/@item.Image" style="object-fit: cover;" />
+                                </div>
+                                <div class="controls">
+                                    <div class="control"></div>
+                                    <div class="control"></div>
+                                    <div class="control"></div>
+                                    <div class="control"></div>
+                                    <div class="control"></div>
+                                    <div class="control"></div>
+                                    <div class="speaker">
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 style="font-size:36pt; text-transform:uppercase;">@item.StageName</h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+
+}

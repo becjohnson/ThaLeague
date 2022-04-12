@@ -1,0 +1,71 @@
+﻿@model ThaLeague.ViewModels.AudioViewModel
+
+<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Add Audio
+</button>
+<form enctype="multipart/form-data" asp-controller="Audio" asp-action="Create">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog bg-dark">
+            <div class="modal-content bg-dark">
+                <div class="modal-header text-center">
+                    <h5 class="modal-title text-light" id="exampleModalLabel">Add Audio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <input asp-for="Title" placeholder="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label text-light">Audio</label>
+                        <input asp-for="Path" type="file" accept="audio/*" class="form-control" />
+                        <span asp-validation-for="Path" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Image" class="control-label text-light"></label>
+                        <input asp-for="Image" value="Image" type="file" accept="image/*" class="form-control image-space" />
+                        <span asp-validation-for="Image" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Spotify" placeholder="Spotify Link" class="form-control" />
+                        <span asp-validation-for="Spotify" class="text-danger"></span>
+                    </div>
+                </div>
+                <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" viewBox="0 0 448 512"><path fill="#FCFCFC" d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z" /></svg>
+                </button>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body bg-dark">
+                        <div class="form-group">
+                            <input asp-for="Featuring" placeholder="Featuring" type="text" accept="image/*" class="form-control bottom-space" />
+                            <span asp-validation-for="Featuring" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Producer" placeholder="Producer" type="text" class="form-control bottom-space" />
+                            <span asp-validation-for="Producer" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <textarea asp-for="Lyrics" placeholder="Lyrics" class="form-controlead bottom-space"></textarea>
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <textarea asp-for="Credits" placeholder="Credits" class="form-control bottom-space"></textarea>
+                            <span asp-validation-for="Credits" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button class="btn btn-outline-danger" asp-controller="Audio" asp-action="Create" asp-route-id="@Model.ArtistId">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ThaLeague.Models.Video>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<hr />
+<h1 class="text-center">Videos</h1>
+<hr />
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-6 text-center">
+                <div class="d-inline p-2">
+                    <div class="container video">
+                        <div class="dropdown ms-auto p-2 bd-highlight">
+                            <svg xmlns="http://www.w3.org/2000/svg" type="button" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" data-bs-toggle="dropdown" aria-expanded="false" width="20px" viewBox="0 0 448 512"><path fill="#FCFCFC" d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z" /></svg>
+                            <ul class="dropdown-menu  dropdown-menu-dark text-center" aria-labelledby="dropdownMenuLink">
+                                <li><a asp-action="Edit" asp-controller="Audio" asp-route-id="@item.VideoId">Edit</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a asp-controller="Video" asp-action="Delete" data-bs-toggle="modal" data-bs-target="#deleteVideoModal" asp-route-id="@item.VideoId">Delete</a></li>
+                            </ul>
+                        </div>
+                        <iframe width="530" height="285" src="@item.Url" class="youtube-player" title="YouTube video player" frameborder="3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <br />
+                        <a class="text-light" asp-controller="Video" asp-action="Details" asp-route-id="@item.VideoId">View Details</a>
+                        <h2>@item.StageName</h2>
+                    </div>
+                </div>
+                <form enctype="multipart/form-data" asp-controller="Video" asp-action="DeleteConfirmed">
+                    <div class="modal fade" id="deleteVideoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog text-light">
+                            <div class="modal-content bg-dark">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Delete Video</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete this video?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button class="btn btn-danger" asp-controller="Video" asp-action="DeleteConfirmed" asp-route-id="@item.VideoId">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        }
+    </div>
+</div>
+
+

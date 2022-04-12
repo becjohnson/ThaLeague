@@ -1,0 +1,30 @@
+﻿@model ThaLeague.Models.Video
+
+@{
+    ViewData["Title"] = "Details";
+    string videoPlayer = "https://www.youtube.com/embed/" + Model.Url;
+}
+<style>
+.youtube-player {
+    width: 100%;
+    height: 500px;
+}
+</style>
+
+<div class="container-fluid">
+    <hr />
+    <h1>@Model.Title</h1>
+    <h2>@Model.StageName</h2>
+    <hr />
+    <div class="row">
+        <div class="col-12">
+            <div class="container-fluid">
+            <iframe src="@Model.Url" class="youtube-player" title="YouTube video player" frameborder="3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.VideoId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

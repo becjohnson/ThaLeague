@@ -1,0 +1,42 @@
+﻿@model ThaLeague.Models.Video
+
+<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+    Add Video
+</button>
+<form enctype="multipart/form-data" asp-controller="Video" asp-action="Create">
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+        <div class="modal-dialog bg-dark">
+            <div class="modal-content bg-dark">
+                <div class="modal-header text-center">
+                    <h5 class="modal-title text-light" id="exampleModalLabel1">Add YouTube Video</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <input asp-for="Url" placeholder="Url" class="form-control bottom-space" />
+                        <span asp-validation-for="Url" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Title" placeholder="Title" class="form-control bottom-space" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Description" placeholder="Description" class="form-control bottom-space" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button class="btn btn-outline-danger" asp-controller="Video" asp-action="Create" asp-route-id="@Model.ArtistId">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}
